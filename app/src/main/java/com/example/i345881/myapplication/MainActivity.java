@@ -9,8 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.i345881.myapplication.Entities.Beer;
 import com.google.gson.Gson;
@@ -29,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter(BEERS_UPDATE);
         LocalBroadcastManager.getInstance(this).registerReceiver(new BeerUpdate(),intentFilter);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
         final Button button = findViewById(R.id.get_beers_button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -46,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new BeersAdapter(new Beer[0]);
+        adapter = new BeersAdapter(new Beer[0], this.recyclerView);
         recyclerView.setAdapter(adapter);
     }
 
@@ -62,7 +68,25 @@ public class MainActivity extends AppCompatActivity {
                 Beer[] beers = gson.fromJson(data, Beer[].class);
 
                 ((BeersAdapter) adapter).setBeers(beers);
+
+                for(int i = 0; i < beers.length; i++) {
+                    System.out.println(beers[i].getName() + " / " + beers[i].getId());
+                }
+
+                Context ctx = getApplicationContext();
+                CharSequence text = "Beers successfully retrieved from the API.";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(ctx, text, duration);
+                toast.show();
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
 }

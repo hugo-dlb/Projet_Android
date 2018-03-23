@@ -9,7 +9,7 @@ public class Beer {
 
     @SerializedName("id")
     @Expose
-    private Double id;
+    private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
@@ -71,11 +71,11 @@ public class Beer {
     @Expose
     private String contributedBy;
 
-    public Double getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Double id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,5 +1,6 @@
 package com.example.i345881.myapplication;
 
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +10,14 @@ import android.widget.TextView;
 
 import com.example.i345881.myapplication.Entities.Beer;
 
+import java.util.HashMap;
+
 public class BeersAdapter extends RecyclerView.Adapter<BeersAdapter.ViewHolder> {
+    private RecyclerView recyclerView;
     private Beer[] beers;
+    private HashMap<Integer, Bitmap> photoThumbnails = new HashMap<>();
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         public ImageView icon;
         public TextView label;
         private ViewHolder(View v) {
@@ -23,7 +27,8 @@ public class BeersAdapter extends RecyclerView.Adapter<BeersAdapter.ViewHolder> 
         }
     }
 
-    public BeersAdapter(Beer[] beers) {
+    public BeersAdapter(Beer[] beers, RecyclerView recyclerView) {
+        this.recyclerView = recyclerView;
         this.beers = beers;
     }
 
@@ -38,8 +43,22 @@ public class BeersAdapter extends RecyclerView.Adapter<BeersAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        new ImageLoadTask(this.beers[position].getImageUrl(), holder.icon).execute();
-        holder.label.setText(this.beers[position].getName());
+        Beer beer = beers[position];
+
+        // attempt to load image from cache
+        Bitmap thumbnail = photoThumbnails.get(beer.getId());
+
+        if (thumbnail == null) {
+            holder.icon.setImageResource(android.R.color.transparent);
+            try {
+                new ImageLoadTask(this.recyclerView, position, beer, holder.icon, photoThumbnails).execute();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            holder.icon.setImageBitmap(thumbnail);
+        }
+        holder.label.setText(beer.getName());
     }
 
     @Override
@@ -48,7 +67,6 @@ public class BeersAdapter extends RecyclerView.Adapter<BeersAdapter.ViewHolder> 
     }
 
     public void setBeers(Beer[] beers) {
-        System.out.println("Added " + beers.length + " beers to the adapter.");
         this.beers = beers;
         notifyDataSetChanged();
     }

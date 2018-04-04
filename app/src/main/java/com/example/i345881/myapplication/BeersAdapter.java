@@ -1,5 +1,7 @@
 package com.example.i345881.myapplication;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,12 +20,27 @@ public class BeersAdapter extends RecyclerView.Adapter<BeersAdapter.ViewHolder> 
     private HashMap<Integer, Bitmap> photoThumbnails = new HashMap<>();
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        public Beer beer;
         public ImageView icon;
         public TextView label;
+
         private ViewHolder(View v) {
             super(v);
             icon = v.findViewById(R.id.icon);
             label = v.findViewById(R.id.label);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, BeerDetails.class);
+                    intent.putExtra("beer_image", beer.getImageUrl());
+                    intent.putExtra("beer_name", beer.getName());
+                    intent.putExtra("beer_description", beer.getDescription());
+                    intent.putExtra("beer_volume", String.valueOf(beer.getVolume()));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
@@ -59,6 +76,7 @@ public class BeersAdapter extends RecyclerView.Adapter<BeersAdapter.ViewHolder> 
             holder.icon.setImageBitmap(thumbnail);
         }
         holder.label.setText(beer.getName());
+        holder.beer = beer;
     }
 
     @Override

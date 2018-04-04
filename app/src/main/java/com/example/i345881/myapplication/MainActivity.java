@@ -4,12 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -32,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter(BEERS_UPDATE);
         LocalBroadcastManager.getInstance(this).registerReceiver(new BeerUpdate(),intentFilter);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        myToolbar.setTitleTextColor(Color.DKGRAY);
 
         final Button button = findViewById(R.id.get_beers_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -69,10 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
                 ((BeersAdapter) adapter).setBeers(beers);
 
-                for(int i = 0; i < beers.length; i++) {
-                    System.out.println(beers[i].getName() + " / " + beers[i].getId());
-                }
-
                 Context ctx = getApplicationContext();
                 CharSequence text = "Beers successfully retrieved from the API.";
                 int duration = Toast.LENGTH_LONG;
@@ -83,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Menu icons are inflated just as they were with actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

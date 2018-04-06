@@ -1,11 +1,19 @@
 package com.example.i345881.myapplication;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.net.URL;
 
 public class BeerDetails extends AppCompatActivity {
 
@@ -23,12 +31,28 @@ public class BeerDetails extends AppCompatActivity {
             }
         });
 
+        ImageView imageView = (ImageView) this.findViewById(R.id.beerDetailsImage);
         TextView nameTextView = (TextView) this.findViewById(R.id.textViewName);
         TextView nameTextDescription = (TextView) this.findViewById(R.id.textViewDescription);
         TextView nameTextVolume = (TextView) this.findViewById(R.id.textViewVolume);
 
+        String image = getIntent().getStringExtra("beer_image");
         nameTextView.setText(getIntent().getStringExtra("beer_name"));
         nameTextDescription.setText(getIntent().getStringExtra("beer_description"));
         nameTextVolume.setText(getIntent().getStringExtra("beer_volume"));
+
+        try {
+            URL url = new URL(image);
+            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            imageView.setImageBitmap(bmp);
+        } catch (Exception e) {
+            System.out.println(e);
+            Context ctx = getApplicationContext();
+            CharSequence text = getString(R.string.error);
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(ctx, text, duration);
+            toast.show();
+        }
     }
 }

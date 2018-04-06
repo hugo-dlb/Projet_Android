@@ -27,16 +27,12 @@
         android:orientation="vertical"
         android:weightSum="10">
 
-        <RelativeLayout
-            android:layout_weight = "1.5"
+        <Button
+            android:id="@+id/get_beers_button"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
-            <Button
-                android:id="@+id/get_beers_button"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:text="Get beers" />
-        </RelativeLayout>
+            android:layout_weight = "1.5"
+            android:text="@string/get_beers_button" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/beer_recycler_view"

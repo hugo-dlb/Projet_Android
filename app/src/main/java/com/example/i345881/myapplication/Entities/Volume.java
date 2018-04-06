@@ -29,4 +29,8 @@ public class Volume {
         this.unit = unit;
     }
 
+    public String toString() {
+        return String.valueOf(this.value) + " " + this.unit;
+    }
+
 }

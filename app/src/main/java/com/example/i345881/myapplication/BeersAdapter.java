@@ -37,7 +37,7 @@ public class BeersAdapter extends RecyclerView.Adapter<BeersAdapter.ViewHolder> 
                     intent.putExtra("beer_image", beer.getImageUrl());
                     intent.putExtra("beer_name", beer.getName());
                     intent.putExtra("beer_description", beer.getDescription());
-                    intent.putExtra("beer_volume", String.valueOf(beer.getVolume()));
+                    intent.putExtra("beer_volume", beer.getVolume().toString());
                     context.startActivity(intent);
                 }
             });

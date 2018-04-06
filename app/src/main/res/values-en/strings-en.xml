@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error">A technical error occured. Please try again later.</string>
+    <string name="menu_info_button">Information</string>
+    <string name="get_beers_button">Get beers</string>
+    <string name="health_notification">Excessive consumption of alcohol is harmful to health!</string>
+    <string name="beers_retrieved">Beers successfully retrieved from the API.</string>
+    <string name="beers_progress">Currently retrieving beers from the API</string>
+</resources>

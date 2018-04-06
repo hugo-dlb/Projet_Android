@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error">Une erreur technique est survenue. Veuillez ré-essayer plus tard.</string>
+    <string name="menu_info_button">Informations</string>
+    <string name="get_beers_button">Récupérer les bières</string>
+    <string name="health_notification">L\'abus d\'alcool est dangeureux pour la santé !</string>
+    <string name="beers_retrieved">Les bières ont bien été récupérées depuis l\'API.</string>
+    <string name="beers_progress">Récupération des bières depuis l\'API en cours</string>
+</resources>

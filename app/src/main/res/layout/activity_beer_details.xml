@@ -21,6 +21,7 @@
             app:navigationIcon="?attr/homeAsUpIndicator" />
 
         <ImageView
+            android:id="@+id/beerDetailsImage"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             app:srcCompat="@android:drawable/picture_frame" />

@@ -75,8 +75,7 @@ public class GetBeersService extends IntentService {
      private String parseJSON(URL url) throws Exception {
          Scanner sc = new Scanner(url.openStream());
          String result = "";
-         while(sc.hasNext())
-         {
+         while(sc.hasNext()) {
              result += sc.nextLine();
          }
          sc.close();

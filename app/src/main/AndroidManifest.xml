@@ -23,7 +23,7 @@
             android:name=".GetBeersService"
             android:exported="false" />
 
-        <activity android:name=".BeerDetails"></activity>
+        <activity android:name=".BeerDetailsActivity"></activity>
     </application>
 
 </manifest>

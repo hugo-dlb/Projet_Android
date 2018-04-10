@@ -13,9 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.net.URL;
 
-public class BeerDetails extends AppCompatActivity {
+public class BeerDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +44,7 @@ public class BeerDetails extends AppCompatActivity {
         nameTextVolume.setText(getIntent().getStringExtra("beer_volume"));
 
         try {
-            URL url = new URL(image);
-            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            imageView.setImageBitmap(bmp);
+            Picasso.get().load(image).into(imageView);
         } catch (Exception e) {
             System.out.println(e);
             Context ctx = getApplicationContext();

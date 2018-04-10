@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         myToolbar.setTitleTextColor(Color.DKGRAY);
 
-        final Button button = findViewById(R.id.get_beers_button);
+        final Button button = (Button) findViewById(R.id.get_beers_button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 button.setVisibility(View.GONE);
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView = findViewById(R.id.beer_recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.beer_recycler_view);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView

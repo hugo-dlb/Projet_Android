@@ -33,7 +33,7 @@ public class BeersAdapter extends RecyclerView.Adapter<BeersAdapter.ViewHolder> 
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
-                    Intent intent = new Intent(context, BeerDetails.class);
+                    Intent intent = new Intent(context, BeerDetailsActivity.class);
                     intent.putExtra("beer_image", beer.getImageUrl());
                     intent.putExtra("beer_name", beer.getName());
                     intent.putExtra("beer_description", beer.getDescription());

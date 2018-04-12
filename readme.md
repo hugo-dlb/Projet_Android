@@ -1,9 +1,6 @@
 # Beebeer
 
-Android basic application (school project)
-
-## Purpose
-
+Android basic application (school project).
 Beebeer allows you to browse through the beers available on [the punk API](https://punkapi.com/).
 
 ## Features

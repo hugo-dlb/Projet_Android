@@ -2,9 +2,19 @@
 
 Android basic application (school project)
 
-## Features
+## Purpose
 
 Beebeer allows you to browse through the beers available on [the punk API](https://punkapi.com/).
+
+## Features
+
+* Recyclerview usage for optimal performance
+* Image caching in the recyclerview
+* REST Api calls
+* JSON serialization/deserialization with GSON
+* Toast and notification usage
+* Master/detail flow
+* Browser interraction
 
 ## Built With
 
